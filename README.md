@@ -1,3 +1,6 @@
+Below README.md is from orginal repo - https://github.com/Skekfly/garlicos-updater
+I am working on Powershell version of the scirpt but it's "work in progress" and currently it breaks on some things and is not able to download the files. 
+
 # garlicos-updater
 
 this project is used for updating Anbernic [RG35XX](https://anbernic.com/fr/products/rg35xx) powered
