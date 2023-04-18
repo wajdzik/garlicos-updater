@@ -38,14 +38,17 @@ write-output "start CFW"
 write-output "Done CFW"
 if ("true" -ne $SettingsObject.resetCfg)
 {
-    .\adb -s "$adbDeviceId" shell mv /mnt/mmc/CFW/retroarch/.retroarch/current_retroarch.cfg /mnt/mmc/CFW/retroarch/.retroarch/retroarch.cfg
-    .\adb -s "$adbDeviceId" shell mv /mnt/mmc/CFW/retroarch/.retroarch/current_assets/* /mnt/mmc/CFW/retroarch/.retroarch/assets
-    .\adb -s "$adbDeviceId" shell mv /mnt/mmc/CFW/current_skin/* /mnt/mmc/CFW/skin
+    .\adb -s "$adbDeviceId" shell cp -rv /mnt/mmc/CFW/retroarch/.retroarch/current_retroarch.cfg /mnt/mmc/CFW/retroarch/.retroarch/retroarch.cfg
+    .\adb -s "$adbDeviceId" shell cp -rv /mnt/mmc/CFW/retroarch/.retroarch/current_assets/* /mnt/mmc/CFW/retroarch/.retroarch/assets
+    .\adb -s "$adbDeviceId" shell cp -rv /mnt/mmc/CFW/current_skin/* /mnt/mmc/CFW/skin
+    .\adb -s "$adbDeviceId" shell rm -f -rR /mnt/mmc/CFW/retroarch/.retroarch/current_assets/
+    .\adb -s "$adbDeviceId" shell rm -f -rR /mnt/mmc/CFW/current_skin/
+    .\adb -s "$adbDeviceId" shell rm -f -rR /mnt/mmc/CFW/retroarch/.retroarch/current_retroarch.cfg
 }
 
 Write-Output "# Updating roms"
-.\adb -s "$adbDeviceId" push  .\roms\Roms\* /mnt/mmc/ 
-.\adb -s "$adbDeviceId" push .\roms\Roms\* /mnt/SDCARD/
+.\adb -s "$adbDeviceId" push  .\roms\Roms\ /mnt/mmc/ 
+.\adb -s "$adbDeviceId" push .\roms\Roms\ /mnt/SDCARD/
 
 Write-Output "# Saving saves"
 .\adb -s "$adbDeviceId" pull --sync /mnt/SDCARD/Saves "$saveDir"
