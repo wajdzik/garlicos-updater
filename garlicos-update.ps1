@@ -1,5 +1,5 @@
 Write-Output 'Hello world'
-$SettingsObject = Get-Content -Path .\garlicos-updater.cfg | ConvertFrom-Json
+$SettingsObject = Get-Content -Path .\garlicos-psupdater.cfg | ConvertFrom-Json
 $workingDir = ".\tmp\garlicOS\" 
 $saveDir = ".\garlicOS\saves\"
 New-Item -ItemType "directory" -Path "$workingDir" -Force
